@@ -11,7 +11,7 @@ class VideoCamera(object):
 
         self.img_dir = "./tmp"
         if not os.path.exists(self.img_dir):
-            os.makedirs(self.img_dir)  # Cria a pasta `tmp` se não existir
+            os.makedirs(self.img_dir)
 
     def __del__(self):
         self.video.release()
@@ -50,23 +50,20 @@ class VideoCamera(object):
         return jpeg.tobytes()
 
     def sample_faces(self, frame):
-        ret, frame = self.get_camera()
-        if not ret or frame is None:
+        if frame is None:
             return None
 
-        frame = cv2.flip(frame, 180)
-        frame = cv2.resize(frame, (480, 360))
+        frame = cv2.resize(frame, (480, 360))  # Redimensiona para consistência
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         faces = self.face_cascade.detectMultiScale(
-            frame,
+            gray,
             scaleFactor=1.1,
-            minNeighbors=20,
-            minSize=(30, 30),
-            maxSize=(400, 400)
+            minNeighbors=5,
+            minSize=(50, 50)
         )
 
         for (x, y, w, h) in faces:
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 4)
             cropped_face = frame[y:y+h, x:x+w]
             return cropped_face
 
