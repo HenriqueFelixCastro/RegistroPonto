@@ -1,0 +1,7 @@
+kivy
+
+kivymd
+
+pillow
+
+numpy==1.24.4
