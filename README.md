@@ -76,5 +76,4 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 Para dúvidas ou sugestões, entre em contato:
 
 - **Henrique Felix Castro**
-- Email: [henrique.felix@example.com](mailto:henrique.felix.castro@hotmail.com)
 - GitHub: [@HenriqueFelixCastro](https://github.com/HenriqueFelixCastro)
